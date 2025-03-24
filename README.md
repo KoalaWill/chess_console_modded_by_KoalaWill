@@ -1,30 +1,24 @@
-# chess_console
+# chess-console-game-modded-by-koala
+ This is a chess console game forked from https://github.com/jeromevonk/chess_console and is edited, added AI (using stockfish.exe), and added a arduino mode by me
 
-This is a simple chess game, written in C++, that runs in the console.
+<br />
 
-For more information, please read the [article](https://www.codeproject.com/Articles/1214018/Chess-console-game-in-Cplusplus).
+## How to use it....
+ Just call the exe file in the build folder.
+ If you meet dll problems....I think you can fix it on your own
+ 
+<br />
 
-## Building Guide
+## How to change it....
+ 1. Fork it, or download it(of course)
+ 2. run
+    ```
+    cmake CmakeLists.txt
+    ```
+ 3.
+    if it mentions error about the file directory, delete the catche file and run the command above again
+ 4. 
+    build it or press "F7"
+ 5. got to the build folder
+ 6. run it. ( I mean, it is quite obvious )
 
-You may want to clone this repo.
-
-* Linux / macOS
-```
-$ cd chess_console/source
-$ mkdir build
-$ cd build
-$ cmake ..
-$ make
-$ ./chess
-```
-
-* Windows
-  * ensure you have _Visual Studio_ installed on your system
-  * open `chess_console/source/Chess_console.sln`
-  * you may hit `ctrl+shift+b` or click the _build_ button from the menu bar to compile the solution
-  * press the `F5` key to run the game
-
-## Changelog
-
-* May, 2018 - original version
-* June, 2024 - fixes for issues [2](https://github.com/jeromevonk/chess_console/issues/2) and [4](https://github.com/jeromevonk/chess_console/issues/4), created unit tests and general improvements

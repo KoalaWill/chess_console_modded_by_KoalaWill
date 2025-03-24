@@ -6,8 +6,8 @@
 // -------------------------------------------------------------------------------
 // Macros will be of type const char* because theu are defined as string literals.
 // -------------------------------------------------------------------------------
-#define WHITE_SQUARE_WINDOWS "\xDB" 
-#define BLACK_SQUARE_WINDOWS "\xFF"
+#define WHITE_SQUARE_WINDOWS " " 
+#define BLACK_SQUARE_WINDOWS "█"
 
 #define WHITE_SQUARE_LINUX " "
 #define BLACK_SQUARE_LINUX "█"

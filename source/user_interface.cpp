@@ -20,15 +20,12 @@ void appendToNextMessage( string msg )
 }
 void clearScreen(void)
 {
-   #ifdef _WIN32
-      system("cls");
-   #else
-      system("clear");
-   #endif
+   system("cls");
 }
 
 void printLogo(void)
 {
+   cout << " A chess console game from Jerome Vonk and modded by KoalaWill\n\n";
    cout << "    ======================================\n";
    cout << "       _____ _    _ ______  _____ _____\n";
    cout << "      / ____| |  | |  ____|/ ____/ ____|\n";
@@ -41,7 +38,7 @@ void printLogo(void)
 
 void printMenu(void)
 {
-   cout << "Commands: (N)ew game\t(M)ove \t(U)ndo \t(S)ave \t(L)oad \t(Q)uit \n";
+   cout << "Commands: (N)ew game   (M)ove   (U)ndo   (S)ave   (L)oad   (Q)uit   (A)I   (D)evelope \n";
 }
 
 void printMessage(void)
@@ -53,84 +50,85 @@ void printMessage(void)
 
 void printLine(int iLine, const char* pchColor1, const char* pchColor2, Game& game)
 {
-   // Example (for CELL = 6):
+    // Example (for CELL = 6):
 
-   //  [6-char]
-   //  |______| subline 1
-   //  |___Q__| subline 2
-   //  |______| subline 3
+    //  [6-char]
+    //  |______| subline 1
+    //  |___Q__| subline 2
+    //  |______| subline 3
 
-   // Define the CELL variable here. 
-   // It represents how many horizontal characters will form one square
-   // The number of vertical characters will be CELL/2
-   // You can change it to alter the size of the board (an odd number will make the squares look rectangular)
-   int CELL = 6;
+    // Define the CELL variable here. 
+    // It represents how many horizontal characters will form one square
+    // The number of vertical characters will be CELL/2
+    // You can change it to alter the size of the board (an odd number will make the squares look rectangular)
+    int CELL = 6;
 
-   // Since the width of the characters BLACK and WHITE is half of the height,
-   // we need to use two characters in a row.
-   // So if we have CELL characters, we must have CELL/2 sublines
-   for (int subLine = 0; subLine < CELL/2; subLine++)
-   {
-      // A sub-line is consisted of 8 cells, but we can group it
-      // in 4 iPairs of black&white
-      for (int iPair = 0; iPair < 4; iPair++)
-      {
-         // First cell of the pair
-         for (int subColumn = 0; subColumn < CELL; subColumn++)
-         {
-            // The piece should be in the "middle" of the cell
-            // For 3 sub-lines, in sub-line 1
-            // For 6 sub-columns, sub-column 3
-            if ( subLine == 1 && subColumn == 3)
+    // Since the width of the characters BLACK and WHITE is half of the height,
+    // we need to use two characters in a row.
+    // So if we have CELL characters, we must have CELL/2 sublines
+    for (int subLine = 0; subLine < CELL / 2; subLine++)
+    {
+        // A sub-line is consisted of 8 cells, but we can group it
+        // in 4 iPairs of black&white
+        for (int iPair = 0; iPair < 4; iPair++)
+        {
+            // First cell of the pair
+            for (int subColumn = 0; subColumn < CELL; subColumn++)
             {
-               if (game.getPieceAtPosition(iLine, iPair*2) != 0x20) 
-               {
-                  cout << game.getPieceAtPosition(iLine, iPair*2);
-               } 
-               else 
-               {
-                  cout << pchColor1;
-               }
+                // The piece should be in the "middle" of the cell
+                // For 3 sub-lines, in sub-line 1
+                // For 6 sub-columns, sub-column 3
+                if (subLine == 1 && subColumn == 3)
+                {
+                    if (game.getPieceAtPosition(iLine, iPair * 2) != 0x20)
+                    {
+                        cout << game.getPieceAtPosition(iLine, iPair * 2);
+                    }
+                    else
+                    {
+                        cout << pchColor1;
+                    }
+                }
+                else
+                {
+                    cout << pchColor1;
+                }
             }
-            else
-            {
-               cout << pchColor1;
-            }
-         }
 
-         // Second cell of the pair
-         for (int subColumn = 0; subColumn < CELL; subColumn++)
-         {
-            // The piece should be in the "middle" of the cell
-            // For 3 sub-lines, in sub-line 1
-            // For 6 sub-columns, sub-column 3
-            if ( subLine == 1 && subColumn == 3)
+            // Second cell of the pair
+            for (int subColumn = 0; subColumn < CELL; subColumn++)
             {
-               if (game.getPieceAtPosition(iLine, iPair*2+1) != 0x20) 
-               {
-                  cout << game.getPieceAtPosition(iLine, iPair*2+1);
-               } 
-               else 
-               {
-                  cout << pchColor2;
-               }
+                // The piece should be in the "middle" of the cell
+                // For 3 sub-lines, in sub-line 1
+                // For 6 sub-columns, sub-column 3
+                if (subLine == 1 && subColumn == 3)
+                {
+                    if (game.getPieceAtPosition(iLine, iPair * 2 + 1) != 0x20)
+                    {
+                        cout << game.getPieceAtPosition(iLine, iPair * 2 + 1);
+                    }
+                    else
+                    {
+                        cout << pchColor2;
+                    }
+                }
+                else
+                {
+                    cout << pchColor2;
+                }
             }
-            else
-            {
-               cout << pchColor2;
-            }
-         }
-      }
+        }
 
-      // Write the number of the line on the right
-      if ( 1 == subLine )
-      {
-         cout << "   " << iLine+1;
-      }
+        // Write the number of the line on the right
+        if (1 == subLine)
+        {
+            cout << "   " << iLine + 1;
+        }
 
-      cout << "\n";
-   }
+        cout << "\n";
+    }
 }
+
 
 void printSituation(Game& game)
 {
@@ -139,21 +137,21 @@ void printSituation(Game& game)
    {
       cout << "Last moves:\n";
 
-      size_t uiMoves = game.rounds.size();
-      size_t uiToShow = uiMoves >= 5 ? 5 : uiMoves;
+      int iMoves = game.rounds.size();
+      int iToShow = iMoves >= 5 ? 5 : iMoves;
 
       string space = "";
 
-      while( uiToShow-- )
+      while( iToShow-- )
       {
-         if ( uiMoves < 10 )
+         if ( iMoves < 10 )
          {
             // Add an extra hardspace to allign the numbers that are smaller than 10
             space = " ";
          }
 
-         cout << space << uiMoves << " ..... " <<  game.rounds[uiMoves-1].white_move.c_str() << " | " << game.rounds[uiMoves - 1].black_move.c_str() << "\n";
-         uiMoves--;
+         cout << space << iMoves << " ..... " <<  game.rounds[iMoves-1].white_move.c_str() << " | " << game.rounds[iMoves - 1].black_move.c_str() << "\n";
+         iMoves--;
       }
 
       cout << "\n";
@@ -203,6 +201,4 @@ void printBoard(Game& game)
          printLine(iLine, WHITE_SQUARE, BLACK_SQUARE, game);
       }
    }
-
-   cout << "\n   A     B     C     D     E     F     G     H\n";
 }
