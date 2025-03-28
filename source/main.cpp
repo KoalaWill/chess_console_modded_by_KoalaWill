@@ -608,7 +608,7 @@ void AI_move(char fromC, char fromR, char toC, char toR, bool Is_promotion, char
             auto found = tmp.find("bestmove");
             if (found != string::npos)
             {
-               if (Is_promotion)
+               if (tmp[13]!=' ')
                {
                   ans = tmp.substr(9, 5);
                   cout << ans << endl;
