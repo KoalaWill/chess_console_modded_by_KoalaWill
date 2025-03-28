@@ -49,7 +49,7 @@ String serialRead() { // Function to read data from Serial
 void Transfer(String input) { // Function to send normal message to Slave
   Wire.beginTransmission(SLAVE_ADDR); // Start transmission
   
-  // Setup a char array that is a copy of the mesage string
+  // Setup a char array that is a copy of the message string
   int input_size = input.length();
   char message[input_size];
   for (int i=0;i<input_size;i++) {

@@ -740,12 +740,13 @@ void movePiece(void)
    if(arduino_mode) Send_string(port_connected, "Player make move\n");
 
    std::string move_from;
-   if (arduino_mode)
-   {
-      move_from = Read_line(port_connected);
-      cout << "command read from board: "<< move_from << endl;
-   }
-   else getline(cin, move_from);
+   // if (arduino_mode)
+   // {
+   //    move_from = Read_line(port_connected);
+   //    cout << "command read from board: "<< move_from << endl;
+   // }
+   // else getline(cin, move_from);
+   getline(cin, move_from);
    if (move_from.length() > 2)
    {
       createNextMessage("You should type only two characters (column and row)\n");
@@ -830,12 +831,12 @@ void movePiece(void)
    cout <<"Move to: ";
    std::string move_to;
    
-   if(arduino_mode){
-      move_to = Read_line(port_connected);
-      cout << "command read from board: "<< move_to << endl;
-   }
-   else getline(cin, move_to);
-
+   // if(arduino_mode){
+   //    move_to = Read_line(port_connected);
+   //    cout << "command read from board: "<< move_to << endl;
+   // }
+   // else getline(cin, move_to);
+   getline(cin, move_to);
    if (move_to.length() > 2)
    {
       cout << "error\n";
