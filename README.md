@@ -1,5 +1,8 @@
 # chess-console-game-modded-by-koala
  This is a chess console game forked from https://github.com/jeromevonk/chess_console and is edited, added AI (using stockfish.exe), and added a arduino mode by me
+ 
+ 
+ ## credit: [serialib](https://github.com/imabot2/serialib) by imabot2
 
 <br />
 
